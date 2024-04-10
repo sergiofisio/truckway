@@ -1,5 +1,6 @@
 import logo from "../../assets/logo-truckRED.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-scroll";
 
 const nav = [
   {
@@ -7,24 +8,24 @@ const nav = [
     link: "/",
   },
   {
-    name: "Quem somos",
-    link: "#quem",
+    name: "História",
+    link: "history",
   },
   {
-    name: "Serviços",
-    link: "#servicos",
+    name: "Nossa Frota",
+    link: "truck",
   },
   {
     name: "Clientes",
-    link: "#clientes",
+    link: "clientes",
   },
   {
     name: "Responsabiliade ambiental",
-    link: "#responsabilidade",
+    link: "responsabilidade",
   },
   {
     name: "Contato",
-    link: "#contato",
+    link: "contato",
   },
 ];
 
@@ -43,8 +44,12 @@ export default function Header() {
           return (
             <Link
               key={key}
-              className="text-red text-3xl transition-all duration-500 ease-in-out hover:underline"
+              className="text-red text-3xl transition-all duration-500 ease-in-out cursor-pointer hover:underline"
               to={item.link}
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
             >
               {item.name}
             </Link>

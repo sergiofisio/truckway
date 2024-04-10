@@ -5,10 +5,10 @@ import Button from "../button";
 export default function Presentation({
   showModal,
 }: {
-  showModal: (modalName: string) => void;
+  showModal: (modalName: string | boolean) => void;
 }) {
   return (
-    <section className="bg-red flex flex-col items-center p-10 ">
+    <section id="history" className="bg-red flex flex-col items-center p-10 ">
       <div className="flex items-center justify-center text-white">
         <h2 className="text-3xl text-center">
           Bem-vindo à Truckway! Somos uma empresa de transporte e logística
