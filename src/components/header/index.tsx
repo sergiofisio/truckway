@@ -1,4 +1,4 @@
-import logo from "../../assets/logo-truckRED.svg";
+import logo from "../../assets/logo-truckWHITE.svg";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-scroll";
 
@@ -17,22 +17,22 @@ const nav = [
   },
   {
     name: "Clientes",
-    link: "clientes",
+    link: "clients",
   },
   {
     name: "Responsabiliade ambiental",
-    link: "responsabilidade",
+    link: "environement",
   },
   {
     name: "Contato",
-    link: "contato",
+    link: "contact",
   },
 ];
 
 export default function Header() {
   const navigate = useNavigate();
   return (
-    <header className="flex items-center justify-around h-full w-full p-10">
+    <header className="flex items-center justify-around h-full w-full p-10 bg-red">
       <img
         className="w-52 cursor-pointer"
         src={logo}
@@ -44,7 +44,7 @@ export default function Header() {
           return (
             <Link
               key={key}
-              className="text-red text-3xl transition-all duration-500 ease-in-out cursor-pointer hover:underline"
+              className="text-white text-3xl transition-all duration-500 ease-in-out cursor-pointer hover:underline"
               to={item.link}
               spy={true}
               smooth={true}

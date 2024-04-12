@@ -11,9 +11,24 @@ export default function Trucks({
   showModal: (text: string) => void;
 }) {
   return (
-    <section id="truck" className="p-8">
-      <h2 className="text-6xl text-red text-center">Conheça nossa Frota</h2>
-      <div className="flex flex-wrap items-center justify-center gap-10 p-8">
+    <div id="truck" className="flex flex-col gap-8">
+      <h2 className="font-title text-6xl text-red text-center font-bold">
+        Conheça nossa Frota
+      </h2>
+      <div className="font-text text-2xl flex flex-col justify-center text-justify prose !max-w-full px-4">
+        <p className="m-0">
+          Nossa frota é a espinha dorsal da Truckway. Com veículos modernos e
+          bem-mantidos, estamos prontos para enfrentar qualquer desafio
+          logístico.
+        </p>
+        <p className="m-0">
+          Desde carretas graneleiras até carretas tanque, nossos caminhões são
+          equipados para transportar cargas de maneira eficiente e segura.
+          Acreditamos que uma frota confiável é essencial para o sucesso de
+          nossos clientes e para a nossa própria jornada.
+        </p>
+      </div>
+      <div className="flex flex-wrap items-center justify-center gap-10 px-8">
         <Truck
           showModal={() => showModal("baú")}
           img={bau}
@@ -40,6 +55,6 @@ export default function Trucks({
           truckName="Câmara Fria"
         />
       </div>
-    </section>
+    </div>
   );
 }

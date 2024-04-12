@@ -1,19 +1,20 @@
 import bj from "../../../assets/bj.png";
+import kirk from "../../../assets/douglasKirk.svg";
 
 export default function History({
   showModal,
 }: {
-  showModal: (text: string) => void;
+  showModal: (text: string | boolean) => void;
 }) {
   return (
     <div
       id="history"
       className="fixed top-0 right-0 z-10 flex items-center justify-center w-full h-full bg-opacity-50 bg-red"
     >
-      <div className="flex flex-col w-4/5 max-h-80% h-[80%] p-5 border-4 border-solid border-black bg-white rounded-3xl relative">
+      <div className="flex flex-col w-4/5 max-h-80% h-[80%] p-5 bg-white rounded-3xl relative drop-shadow-[0_0_20px_#fff]">
         <button
-          className="rounded-[100%] border-black border-2 absolute top-4 right-4"
-          onClick={() => showModal("")}
+          className="rounded-[100%] border-red border-2 absolute top-4 right-4 text-red hover:bg-red hover:text-white transition-all duration-500 ease-in-out"
+          onClick={() => showModal(false)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -22,99 +23,111 @@ export default function History({
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
         </button>
-        <h2 className="text-center text-3xl font-black">
+        <h2 className="font-title text-center text-3xl font-black">
           História da Truckway: Uma Jornada de Estradas e Inovação
         </h2>
-        <div className="max-h-[90%] overflow-y-scroll">
-          <p>Há muito tempo, em uma estrada sinuosa, nasceu a Truckway...</p>
-          <div className="flex items-center ">
-            <img src={bj} alt="BJ" />
-            <div className="px-4">
-              <p className="flex">
-                Fundada em 1988 pelo destemido ex-caminhoneiro B.J. Mackey,
-                nossa empresa emergiu das poeiras das rodovias e se tornou uma
-                lenda no mundo da logística e transporte.
+        <div className="flex flex-col gap-2 font-text text-xl max-h-[90%] overflow-y-scroll prose !max-w-full px-4">
+          <div className="flex justify-center items-center m-0">
+            <img
+              className="m-0 rounded-3xl drop-shadow-2xl"
+              src={bj}
+              alt="BJ"
+            />
+            <div className="px-4 m-0">
+              <p className="text-center m-0">
+                Em uma jornada iniciada em 1988, nasceu a Truckway...
               </p>
-
-              <h3 className="text-3xl text-center font-bold">
+              <p className="flex m-0">
+                A TRUCKWAY é uma instituição reconhecida e respeitada no mundo
+                da logística e transporte rodoviário. Fundada pelo visionário
+                ex-caminhoneiro B.J. Mackey, nossa história é marcada por
+                determinação, inovação e um compromisso incansável com a
+                excelência.
+              </p>
+              <h3 className="font-title text-3xl text-center font-bold m-0">
                 Os Primeiros Passos
               </h3>
 
-              <p>
-                B.J. Mackey, com sua barba espessa e olhos que conheciam cada
-                curva, sonhava com estradas abertas e horizontes distantes. Ele
-                havia passado anos atrás do volante, enfrentando tempestades,
-                sol escaldante e noites escuras. Mas sua paixão pelas estradas
-                nunca diminuiu. Ele sabia que o transporte poderia ser mais do
-                que apenas entregar cargas de um ponto a outro. Assim, com um
-                mapa gasto e um punhado de sonhos, ele fundou a Truckway.
+              <p className="m-0">
+                B.J. Mackey, com sua visão audaciosa e paixão inabalável pelo
+                transporte, lançou as bases da Truckway em 1988. Seus anos de
+                experiência nas estradas moldaram sua visão de uma empresa que
+                não apenas entregava mercadorias, mas superava expectativas e
+                definia novos padrões de excelência.
               </p>
             </div>
           </div>
+          <div className="text-justify">
+            <h3 className="font-title text-3xl text-center font-bold m-0">
+              Desafios e Conquistas
+            </h3>
 
-          <h3 className="text-3xl text-center font-bold">
-            Desafios e Conquistas
-          </h3>
+            <p className="m-0">
+              Os primeiros anos foram desafiadores, mas com determinação e um
+              compromisso inabalável com a qualidade, a Truckway superou todas
+              as adversidades. Investimos em tecnologia de ponta, treinamento
+              especializado e uma frota moderna, garantindo que cada entrega
+              fosse realizada com segurança e eficiência.
+            </p>
+          </div>
+          <div className="text-justify">
+            <h3 className="font-title text-3xl text-center font-bold m-0">
+              Expansão e Reconhecimento
+            </h3>
 
-          <p>
-            Os primeiros anos foram difíceis. A Truckway enfrentou estradas
-            acidentadas, prazos apertados e condições climáticas adversas. Mas
-            B.J. Mackey e sua equipe dedicada superaram cada obstáculo. Eles
-            investiram em tecnologia de ponta, treinamento contínuo e veículos
-            ecologicamente responsáveis. As carretas graneleiras transportavam
-            commodities agrícolas, enquanto as carretas tanque deslizavam pelas
-            estradas com líquidos preciosos. Os baús protegiam cargas secas e
-            sensíveis, e as câmaras frias mantinham alimentos frescos em seu
-            ambiente gelado.
-          </p>
+            <p className="m-0">
+              Ao longo dos anos, expandimos nossas operações além das
+              fronteiras, tornando-nos parceiros confiáveis para os maiores
+              clientes. Nossa reputação de excelência nos permitiu estabelecer
+              parcerias com marcas renomadas como Volvo, DAF, Scania, MAN e
+              Iveco.
+            </p>
+          </div>
+          <div className="text-justify">
+            <h3 className="font-title text-3xl text-center font-bold m-0">
+              Compromisso com a Sustentabilidade
+            </h3>
 
-          <h3 className="text-3xl text-center font-bold">
-            Expansão e Reconhecimento
-          </h3>
-
-          <p>
-            À medida que a Truckway crescia, suas rodas giravam além das
-            fronteiras. Novas rotas foram traçadas, e nossa frota se
-            multiplicou. Os maiores clientes confiavam em nós para transportar
-            suas mercadorias com segurança e eficiência. Marcas como Volvo, DAF,
-            Scania, MAN e Iveco encontraram na Truckway um parceiro confiável.
-          </p>
-
-          <h3 className="text-3xl text-center font-bold">
-            Compromisso com a Sustentabilidade
-          </h3>
-
-          <p>
-            Mas a Truckway não era apenas sobre negócios. B.J. Mackey acreditava
-            que o transporte não deveria prejudicar o meio ambiente. Ele
-            implementou rotas otimizadas, motores de baixa emissão e práticas
-            conscientes. A visão da Truckway era liderar o setor, mantendo seu
-            compromisso com a responsabilidade ambiental. Os motoristas
-            participavam de programas de treinamento em direção econômica e
-            conscientização ambiental. Juntos, eles escreviam uma história de
-            estradas e inovação.
-          </p>
-
-          <h3 className="text-3xl text-center font-bold">
-            O Futuro da Truckway
-          </h3>
-
-          <p>
-            Hoje, a Truckway é mais do que uma empresa. É uma trilha de pneus na
-            areia, uma canção de motores noturnos e um farol que guia os
-            viajantes. Continuamos a escrever nossa história, guiados pela
-            paixão de B.J. Mackey e pelo desejo de fazer a diferença. Junte-se a
-            nós nessa jornada logística e sustentável, onde cada quilômetro é
-            uma página virada.
-          </p>
+            <p className="m-0">
+              Além de sermos líderes no setor, a Truckway é uma empresa
+              comprometida com a sustentabilidade. Implementamos rotas
+              otimizadas, tecnologias de baixa emissão e práticas conscientes,
+              garantindo que nossas operações tenham o menor impacto possível no
+              meio ambiente.
+            </p>
+          </div>
+          <div className="flex items-center text-justify">
+            <img
+              className="m-0 rounded-3xl drop-shadow-2xl"
+              src={kirk}
+              alt="img douglas kirk"
+            />
+            <div className="px-4 m-0">
+              <h3 className="font-title text-3xl text-center font-bold m-0">
+                O Futuro da Truckway
+              </h3>
+              <p className="m-0 ">
+                Hoje, a Truckway é mais do que uma empresa - é uma marca de
+                confiança, inovação e excelência. Continuamos a expandir nossas
+                operações, liderando o caminho em um setor em constante
+                evolução. Junte-se a nós nesta emocionante jornada, onde cada
+                quilômetro é uma oportunidade para fazer a diferença.
+              </p>
+              <p className="m-0">
+                Em 1995, a empresa foi adquirida por Douglas Tiberuis Kirk, um
+                líder visionário com décadas de experiência no setor de
+                transporte e logística.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

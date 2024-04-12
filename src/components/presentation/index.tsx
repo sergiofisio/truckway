@@ -1,4 +1,3 @@
-import { useState } from "react";
 import imgTruck from "../../assets/logo-truck.svg";
 import Button from "../button";
 
@@ -8,9 +7,9 @@ export default function Presentation({
   showModal: (modalName: string | boolean) => void;
 }) {
   return (
-    <section id="history" className="bg-red flex flex-col items-center p-10 ">
+    <div id="history" className="bg-red flex flex-col items-center p-10 ">
       <div className="flex items-center justify-center text-white">
-        <h2 className="text-3xl text-center">
+        <h2 className="font-text text-3xl text-center">
           Bem-vindo à Truckway! Somos uma empresa de transporte e logística
           comprometida com a excelência e a sustentabilidade. Explore nossos
           serviços, conheça nossa história e descubra como podemos atender às
@@ -26,6 +25,6 @@ export default function Presentation({
         }}
         type="button"
       />
-    </section>
+    </div>
   );
 }
