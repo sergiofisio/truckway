@@ -7,11 +7,12 @@ export default function Return() {
   };
   return (
     <button
-      className="fixed bottom-8 left-8 bg-red border-white border-2 border-solid w-10 h-10 rounded-[100%]"
+      className="fixed bottom-8 left-8 bg-red border-white border-2 border-solid w-24 h-24 rounded-[100%] flex flex-col items-center justify-center"
       onClick={scrollToTop}
       style={{ fontSize: "24px", color: "white" }}
     >
-      &#8679;
+      <h2 className="text-4xl">&#8679;</h2>
+      <h2>Voltar</h2>
     </button>
   );
 }

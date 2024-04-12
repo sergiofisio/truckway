@@ -12,7 +12,8 @@ import Return from "./components/return";
 import Contact from "./components/modal/contact";
 
 export default function App() {
-  const [modal, showModal] = useState<string | boolean>("contact");
+  const [modal, showModal] = useState<string | boolean>(false);
+  const [showReturn, setShowReturn] = useState(false);
 
   const sectionRefTrucks = useRef(null);
   const sectionRefClients = useRef(null);
@@ -21,6 +22,20 @@ export default function App() {
   const controlsTrucks = useAnimation();
   const controlsClients = useAnimation();
   const controlsEnvironment = useAnimation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const show = window.scrollY > 30;
+      if (show !== showReturn) {
+        setShowReturn(show);
+      }
+    };
+
+    document.addEventListener("scroll", handleScroll);
+    return () => {
+      document.removeEventListener("scroll", handleScroll);
+    };
+  }, [showReturn]);
 
   useEffect(() => {
     const createObserver = (controls: AnimationControls) => {
@@ -70,7 +85,7 @@ export default function App() {
 
   return (
     <main className="relative">
-      <Return />
+      {showReturn && <Return />}
       <Header />
       <div className="flex flex-col gap-8 items-center">
         <motion.section>
@@ -85,7 +100,7 @@ export default function App() {
             visible: { opacity: 1 },
             hidden: { opacity: 0 },
           }}
-          transition={{ duration: 1, ease: "easeInOut" }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
         >
           <Trucks showModal={showModal} />
         </motion.section>
@@ -98,7 +113,7 @@ export default function App() {
             visible: { opacity: 1 },
             hidden: { opacity: 0 },
           }}
-          transition={{ duration: 1, ease: "easeInOut" }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
         >
           <Clients />
         </motion.section>
@@ -111,7 +126,7 @@ export default function App() {
             visible: { opacity: 1 },
             hidden: { opacity: 0 },
           }}
-          transition={{ duration: 1, ease: "easeInOut" }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
         >
           <Environement />
         </motion.section>
