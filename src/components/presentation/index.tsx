@@ -18,7 +18,7 @@ export default function Presentation({
         <img className="w-1/3" src={imgTruck} alt="truck" />
       </div>
       <Button
-        className="bg-white text-red border-white transition-all duration-500 ease-in-out border-2 border-solid hover:bg-red hover:text-white h-12 w-fit text-2xl font-bold uppercase px-8"
+        className="bg-white text-red border-white transition-all duration-500 ease-in-out border-2 border-solid hover:bg-red hover:text-white h-12 w-1/2 text-2xl font-bold uppercase px-8"
         text="Conheça nossa história"
         onClick={() => {
           showModal("history");

@@ -6,9 +6,9 @@ export default function Button({
   disabled,
 }: {
   text: string;
-  className: string;
-  onClick: () => void;
   type: "submit" | "reset" | "button";
+  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  className: string;
   disabled?: boolean;
 }) {
   return (

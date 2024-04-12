@@ -7,9 +7,12 @@ import Trucks from "./components/trucks";
 import TruckModal from "./components/modal/truck";
 import Clients from "./components/clients";
 import Environement from "./components/environement";
+import Footer from "./components/footer";
+import Return from "./components/return";
+import Contact from "./components/modal/contact";
 
 export default function App() {
-  const [modal, showModal] = useState<string | boolean>(false);
+  const [modal, showModal] = useState<string | boolean>("contact");
 
   const sectionRefTrucks = useRef(null);
   const sectionRefClients = useRef(null);
@@ -66,7 +69,8 @@ export default function App() {
   ]);
 
   return (
-    <main>
+    <main className="relative">
+      <Return />
       <Header />
       <div className="flex flex-col gap-8 items-center">
         <motion.section>
@@ -99,7 +103,7 @@ export default function App() {
           <Clients />
         </motion.section>
         <motion.section
-          className="border-b-2 border-red border-dotted border-opacity-50 pb-10"
+          className=" pb-10"
           ref={sectionRefEnvironment}
           initial="hidden"
           animate={controlsEnvironment}
@@ -111,9 +115,12 @@ export default function App() {
         >
           <Environement />
         </motion.section>
+        <Footer showModal={showModal} />
       </div>
       {modal === "history" ? (
         <History showModal={showModal} />
+      ) : modal === "contact" ? (
+        <Contact showModal={showModal} />
       ) : typeof modal === "string" ? (
         <TruckModal modal={modal} showModal={showModal} />
       ) : null}
