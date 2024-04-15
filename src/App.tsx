@@ -85,7 +85,7 @@ export default function App() {
 
   return (
     <main className="relative">
-      {showReturn && <Return />}
+      <Return showReturn={showReturn} setShowReturn={setShowReturn} />
       <Header />
       <div className="flex flex-col gap-8 items-center">
         <motion.section>

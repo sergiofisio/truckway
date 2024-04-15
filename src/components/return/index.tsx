@@ -1,5 +1,12 @@
-export default function Return() {
+export default function Return({
+  showReturn,
+  setShowReturn,
+}: {
+  showReturn: boolean;
+  setShowReturn: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const scrollToTop = () => {
+    setShowReturn(false);
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -7,7 +14,9 @@ export default function Return() {
   };
   return (
     <button
-      className="fixed bottom-8 left-8 bg-red border-white border-2 border-solid w-24 h-24 rounded-[100%] flex flex-col items-center justify-center"
+      className={`fixed bottom-8 left-8 bg-red border-white border-2 border-solid w-24 h-24 rounded-[100%] flex flex-col items-center justify-center transition-all duration-500 ease-in-out z-50 ${
+        showReturn ? "opacity-100" : "opacity-0"
+      }`}
       onClick={scrollToTop}
       style={{ fontSize: "24px", color: "white" }}
     >
