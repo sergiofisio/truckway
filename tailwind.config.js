@@ -11,9 +11,9 @@ export default {
         lato: ["Lato", "sans-serif"],
       },
       colors: {
-        red: "#FF0000",
+        red: "#FF0700",
       },
-      typography: (theme) => ({
+      typography: () => ({
         DEFAULT: {
           css: {
             p: {

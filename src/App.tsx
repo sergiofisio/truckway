@@ -12,76 +12,60 @@ import Return from "./components/return";
 import Contact from "./components/modal/contact";
 
 export default function App() {
-  const [modal, showModal] = useState<string | boolean>(false);
+  const [activeModal, setActiveModal] = useState<string | boolean>(false);
   const [showReturn, setShowReturn] = useState(false);
 
-  const sectionRefTrucks = useRef(null);
-  const sectionRefClients = useRef(null);
-  const sectionRefEnvironment = useRef(null);
-
-  const controlsTrucks = useAnimation();
-  const controlsClients = useAnimation();
-  const controlsEnvironment = useAnimation();
+  const sections = {
+    Trucks: { ref: useRef(null), controls: useAnimation(), Component: Trucks },
+    Clients: {
+      ref: useRef(null),
+      controls: useAnimation(),
+      Component: Clients,
+    },
+    Environment: {
+      ref: useRef(null),
+      controls: useAnimation(),
+      Component: Environement,
+    },
+  };
 
   useEffect(() => {
-    const handleScroll = () => {
-      const show = window.scrollY > 30;
-      if (show !== showReturn) {
-        setShowReturn(show);
-      }
-    };
+    const handleScroll = () => setShowReturn(window.scrollY > 30);
 
     document.addEventListener("scroll", handleScroll);
-    return () => {
-      document.removeEventListener("scroll", handleScroll);
-    };
-  }, [showReturn]);
+    return () => document.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
-    const createObserver = (controls: AnimationControls) => {
-      return new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            controls.start("visible");
-          } else {
-            controls.start("hidden");
-          }
-        },
-        {
-          rootMargin: "0px",
-          threshold: 0.1,
-        }
+    const createObserver = (controls: AnimationControls) =>
+      new IntersectionObserver(
+        ([entry]) =>
+          controls.start(entry.isIntersecting ? "visible" : "hidden"),
+        { rootMargin: "0px", threshold: 0.1 }
       );
-    };
 
-    const observerTrucks = createObserver(controlsTrucks);
-    const observerClients = createObserver(controlsClients);
-    const observerEnvironment = createObserver(controlsEnvironment);
+    Object.values(sections).forEach(({ ref, controls }) => {
+      const observer = createObserver(controls);
 
-    if (sectionRefTrucks.current) {
-      observerTrucks.observe(sectionRefTrucks.current);
+      if (ref.current) observer.observe(ref.current);
+      return () => observer.disconnect();
+    });
+  }, []);
+
+  const renderModal = () => {
+    if (typeof activeModal === "string") {
+      switch (activeModal) {
+        case "history":
+          return <History showModal={setActiveModal} />;
+        case "contact":
+          return <Contact showModal={setActiveModal} />;
+        default:
+          return <TruckModal modal={activeModal} showModal={setActiveModal} />;
+      }
     }
 
-    if (sectionRefClients.current) {
-      observerClients.observe(sectionRefClients.current);
-    }
-    if (sectionRefEnvironment.current) {
-      observerEnvironment.observe(sectionRefEnvironment.current);
-    }
-
-    return () => {
-      observerTrucks.disconnect();
-      observerClients.disconnect();
-      observerEnvironment.disconnect();
-    };
-  }, [
-    controlsTrucks,
-    controlsClients,
-    controlsEnvironment,
-    sectionRefEnvironment,
-    sectionRefTrucks,
-    sectionRefClients,
-  ]);
+    return null;
+  };
 
   return (
     <main className="relative">
@@ -89,56 +73,27 @@ export default function App() {
       <Header />
       <div className="flex flex-col gap-8 items-center">
         <motion.section>
-          <Presentation showModal={showModal} />
+          <Presentation showModal={setActiveModal} />
         </motion.section>
-        <motion.section
-          className="border-b-2 border-red border-dotted border-opacity-50 pb-10"
-          ref={sectionRefTrucks}
-          initial="hidden"
-          animate={controlsTrucks}
-          variants={{
-            visible: { opacity: 1 },
-            hidden: { opacity: 0 },
-          }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-        >
-          <Trucks showModal={showModal} />
-        </motion.section>
-        <motion.section
-          className="border-b-2 border-red border-dotted border-opacity-50 pb-10"
-          ref={sectionRefClients}
-          initial="hidden"
-          animate={controlsClients}
-          variants={{
-            visible: { opacity: 1 },
-            hidden: { opacity: 0 },
-          }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-        >
-          <Clients />
-        </motion.section>
-        <motion.section
-          className=" pb-10"
-          ref={sectionRefEnvironment}
-          initial="hidden"
-          animate={controlsEnvironment}
-          variants={{
-            visible: { opacity: 1 },
-            hidden: { opacity: 0 },
-          }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-        >
-          <Environement />
-        </motion.section>
-        <Footer showModal={showModal} />
+        {Object.entries(sections).map(([key, { ref, controls, Component }]) => (
+          <motion.section
+            key={key}
+            className="border-b-2 border-red border-dotted border-opacity-50 pb-10"
+            ref={ref}
+            initial="hidden"
+            animate={controls}
+            variants={{
+              visible: { opacity: 1 },
+              hidden: { opacity: 0 },
+            }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+          >
+            <Component showModal={setActiveModal} />
+          </motion.section>
+        ))}
       </div>
-      {modal === "history" ? (
-        <History showModal={showModal} />
-      ) : modal === "contact" ? (
-        <Contact showModal={showModal} />
-      ) : typeof modal === "string" ? (
-        <TruckModal modal={modal} showModal={showModal} />
-      ) : null}
+      <Footer showModal={setActiveModal} />
+      {renderModal()}
     </main>
   );
 }

@@ -1,57 +1,125 @@
-import { useState } from "react";
+import { useState, useCallback, useMemo } from "react";
 import Input from "../../input";
 import Button from "../../button";
 import { toastfy } from "../../../hooks/toast";
 import formImg from "../../../assets/form.svg";
+
+type FormFields =
+  | "name"
+  | "role"
+  | "company"
+  | "cnpj"
+  | "typeProduct"
+  | "email"
+  | "phone"
+  | "cellphone"
+  | "preferenceContact";
 
 export default function Contact({
   showModal,
 }: {
   showModal: (text: string | boolean) => void;
 }) {
-  const [form, setForm] = useState({
-    name: "",
-    role: "",
-    company: "",
-    cnpj: "",
-    typeProduct: "",
-    email: "",
-    phone: "",
-    cellphone: "",
-    preferenceContact: "",
-  });
-  const [error, setError] = useState({
-    name: false,
-    role: false,
-    company: false,
-    cnpj: false,
-    typeProduct: false,
-    email: false,
-    phone: false,
-    cellphone: false,
-    preferenceContact: false,
-  });
+  const initialFormState = useMemo(
+    () => ({
+      name: "",
+      role: "",
+      company: "",
+      cnpj: "",
+      typeProduct: "",
+      email: "",
+      phone: "",
+      cellphone: "",
+      preferenceContact: "",
+    }),
+    []
+  );
 
+  const initialErrorState = useMemo(
+    () => ({
+      name: false,
+      role: false,
+      company: false,
+      cnpj: false,
+      typeProduct: false,
+      email: false,
+      phone: false,
+      cellphone: false,
+      preferenceContact: false,
+    }),
+    []
+  );
+
+  const inputFields = useMemo(
+    () => [
+      { label: "Nome Completo", type: "text", field: "name" },
+      { label: "Cargo", type: "text", field: "role" },
+      { label: "Nome da empresa", type: "text", field: "company" },
+      {
+        label: "CNPJ",
+        type: "text",
+        mask: "99.999.999/9999-99",
+        field: "cnpj",
+      },
+      { label: "Tipo de carga", type: "text", field: "typeProduct" },
+      { label: "Email para contato", type: "text", field: "email" },
+      {
+        label: "Telefone Fixo",
+        type: "text",
+        mask: "(99) 99999-9999",
+        field: "phone",
+      },
+      {
+        label: "Telefone Celular",
+        type: "text",
+        mask: "(99) 99999-9999",
+        field: "cellphone",
+      },
+    ],
+    []
+  );
+
+  const [form, setForm] = useState(initialFormState);
+  const [error, setError] = useState(initialErrorState);
   const [submit, setSubmit] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const hasError = Object.values(form).some((item) => !item);
-    if (hasError) {
-      setError((prev) => ({
-        ...prev,
-        ...Object.fromEntries(
-          Object.entries(form)
-            .filter(([_, value]) => !value)
-            .map(([key]) => [key, true])
-        ),
-      }));
-      toastfy("error", "Preencha todos os campos", 3000);
-      return;
-    }
-    console.log(form);
-    setSubmit(true);
-  };
+  const handleInputChange = useCallback((field: FormFields, value: string) => {
+    setForm((prevForm) => ({ ...prevForm, [field]: value }));
+    setError((prevError) => ({ ...prevError, [field]: false }));
+  }, []);
+
+  const handleSubmit = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      const hasError = Object.values(form).some((item) => !item);
+      if (hasError) {
+        setError((prev) => ({
+          ...prev,
+          ...Object.fromEntries(
+            Object.entries(form)
+              .filter(([_, value]) => !value)
+              .map(([key]) => [key, true])
+          ),
+        }));
+        toastfy("error", "Preencha todos os campos", 3000);
+        return;
+      }
+      console.log(form);
+      setSubmit(true);
+    },
+    [form]
+  );
+
+  const handleReset = useCallback(() => {
+    setForm(initialFormState);
+    setSubmit(false);
+    setError(initialErrorState);
+  }, [initialFormState]);
+
+  const handleFocus = useCallback((field: FormFields) => {
+    setError((prevError) => ({ ...prevError, [field]: false }));
+  }, []);
+
   return (
     <div className="fixed top-0 right-0 z-10 flex items-center justify-center w-full h-full bg-opacity-50 bg-red">
       <div className="flex flex-col w-3/5 max-h-80% h-[90%] p-5 bg-white rounded-3xl relative drop-shadow-[0_0_20px_#fff] gap-4">
@@ -84,10 +152,7 @@ export default function Contact({
         </p>
 
         <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSubmit(e);
-          }}
+          onSubmit={handleSubmit}
           action="submit"
           className="flex flex-col gap-4"
         >
@@ -95,85 +160,21 @@ export default function Contact({
             <img className="h-1/2" src={formImg} alt="formulario enviado" />
           ) : (
             <>
-              <Input
-                label="Nome Completo"
-                type="text"
-                className=""
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                onFocus={() => setError({ ...error, name: false })}
-                value={form.name}
-                error={error.name}
-              />
-              <Input
-                label="Cargo"
-                type="text"
-                className=""
-                onChange={(e) => setForm({ ...form, role: e.target.value })}
-                onFocus={() => setError({ ...error, role: false })}
-                value={form.role}
-                error={error.role}
-              />
-              <Input
-                label="Nome da empresa"
-                type="text"
-                className=""
-                onChange={(e) => setForm({ ...form, company: e.target.value })}
-                onFocus={() => setError({ ...error, company: false })}
-                value={form.company}
-                error={error.company}
-              />
-              <Input
-                label="CNPJ"
-                mask="99.999.999/9999-99"
-                type="text"
-                className=""
-                onChange={(e) => setForm({ ...form, cnpj: e.target.value })}
-                onFocus={() => setError({ ...error, cnpj: false })}
-                value={form.cnpj}
-                error={error.cnpj}
-              />
-              <Input
-                label="Tipo de carga"
-                type="text"
-                className=""
-                onChange={(e) =>
-                  setForm({ ...form, typeProduct: e.target.value })
-                }
-                onFocus={() => setError({ ...error, typeProduct: false })}
-                value={form.typeProduct}
-                error={error.typeProduct}
-              />
-              <Input
-                label="Email para contato"
-                type="text"
-                className=""
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-                onFocus={() => setError({ ...error, email: false })}
-                value={form.email}
-                error={error.email}
-              />
-              <Input
-                label="Telefone Fixo"
-                mask="(99) 99999-9999"
-                type="text"
-                className=""
-                onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                onFocus={() => setError({ ...error, phone: false })}
-                value={form.phone}
-                error={error.phone}
-              />
-              <Input
-                label="Telefone Celular"
-                mask="(99) 99999-9999"
-                type="text"
-                className=""
-                onChange={(e) =>
-                  setForm({ ...form, cellphone: e.target.value })
-                }
-                onFocus={() => setError({ ...error, cellphone: false })}
-                value={form.cellphone}
-                error={error.cellphone}
-              />
+              {inputFields.map(({ label, type, mask, field }) => (
+                <Input
+                  key={field}
+                  label={label}
+                  type={type}
+                  mask={mask}
+                  className=""
+                  onChange={(e) =>
+                    handleInputChange(field as FormFields, e.target.value)
+                  }
+                  onFocus={() => handleFocus(field as FormFields)}
+                  value={form[field as keyof typeof form]} // Add keyof typeof form to allow indexing with a string
+                  error={error[field as keyof typeof form]}
+                />
+              ))}
               <div className="flex items-center justify-center">
                 <label className="w-1/6 text-xl" htmlFor="preference">
                   Preferencia de contato
@@ -185,8 +186,9 @@ export default function Contact({
                   name="preference"
                   id="reference"
                   onChange={(e) =>
-                    setForm({ ...form, preferenceContact: e.target.value })
+                    handleInputChange("preferenceContact", e.target.value)
                   }
+                  onFocus={() => handleFocus("preferenceContact")}
                   value={form.preferenceContact}
                 >
                   <option value=""></option>
@@ -205,20 +207,7 @@ export default function Contact({
                 <Button
                   text="Limpar"
                   type="reset"
-                  onClick={() => {
-                    setForm({
-                      name: "",
-                      role: "",
-                      company: "",
-                      cnpj: "",
-                      typeProduct: "",
-                      email: "",
-                      phone: "",
-                      cellphone: "",
-                      preferenceContact: "",
-                    });
-                    setSubmit(false);
-                  }}
+                  onClick={handleReset}
                   className="bg-black text-white h-12 max-w-[30%] text-2xl font-bold uppercase px-8 hover:bg-white hover:text-black border-black transition-all duration-500 ease-in-out border-2 border-solid"
                 />
               </div>
