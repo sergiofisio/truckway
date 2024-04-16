@@ -4,12 +4,44 @@ import camara from "../../assets/trucks/camaraFria.svg";
 import graneleiro from "../../assets/trucks/graneleiro.svg";
 import sider from "../../assets/trucks/sider.svg";
 import tanque from "../../assets/trucks/tanque.svg";
+import { useMemo } from "react";
 
 export default function Trucks({
   showModal,
 }: {
   showModal: (text: string) => void;
 }) {
+  const trucks = useMemo(
+    () => [
+      {
+        showModal: () => showModal("baú"),
+        img: bau,
+        truckName: "Caminhão baú",
+      },
+      {
+        showModal: () => showModal("graneleiro"),
+        img: graneleiro,
+        truckName: "Caminhão graneleiro",
+      },
+      {
+        showModal: () => showModal("sider"),
+        img: sider,
+        truckName: "Caminhão sider",
+      },
+      {
+        showModal: () => showModal("tanque"),
+        img: tanque,
+        truckName: "Caminhão tanque",
+      },
+      {
+        showModal: () => showModal("fria"),
+        img: camara,
+        truckName: "Câmara Fria",
+      },
+    ],
+    [showModal]
+  );
+
   return (
     <div id="truck" className="flex flex-col gap-8">
       <h2 className="font-title text-6xl text-red text-center font-bold">
@@ -29,31 +61,14 @@ export default function Trucks({
         </p>
       </div>
       <div className="flex flex-wrap items-center justify-center gap-10 px-8">
-        <Truck
-          showModal={() => showModal("baú")}
-          img={bau}
-          truckName="Caminhão baú"
-        />
-        <Truck
-          showModal={() => showModal("graneleiro")}
-          img={graneleiro}
-          truckName="Caminhão graneleiro"
-        />
-        <Truck
-          showModal={() => showModal("sider")}
-          img={sider}
-          truckName="Caminhão sider"
-        />
-        <Truck
-          showModal={() => showModal("tanque")}
-          img={tanque}
-          truckName="Caminhão tanque"
-        />
-        <Truck
-          showModal={() => showModal("fria")}
-          img={camara}
-          truckName="Câmara Fria"
-        />
+        {trucks.map(({ showModal, img, truckName }) => (
+          <Truck
+            key={truckName}
+            showModal={showModal}
+            img={img}
+            truckName={truckName}
+          />
+        ))}
       </div>
     </div>
   );

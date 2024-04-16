@@ -1,32 +1,6 @@
 import Button from "../button";
 import logo from "../../assets/logo-truckWHITE.svg";
-import facebook from "../../assets/social/facebook.svg";
-import instagram from "../../assets/social/instagram.svg";
-import twitter from "../../assets/social/twitter.svg";
-import linkedin from "../../assets/social/linkedin.svg";
-
-const social = [
-  {
-    name: "facebook",
-    img: facebook,
-    url: "https://pt-br.facebook.com/",
-  },
-  {
-    name: "instagram",
-    img: instagram,
-    url: "https://www.instagram.com/",
-  },
-  {
-    name: "twitter",
-    img: twitter,
-    url: "https://twitter.com/",
-  },
-  {
-    name: "linkedin",
-    img: linkedin,
-    url: "https://br.linkedin.com/",
-  },
-];
+import { social } from "../../data/data";
 
 export default function Footer({
   showModal,
@@ -34,7 +8,10 @@ export default function Footer({
   showModal: (modalName: string | boolean) => void;
 }) {
   return (
-    <footer className="bg-red w-full h-60 flex items-center justify-center p-8">
+    <footer
+      id="contact"
+      className="bg-red w-full h-60 flex items-center justify-center p-8"
+    >
       <div className="h-full w-full">
         <img className="w-52" src={logo} alt="Logo truckway" />
       </div>

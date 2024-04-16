@@ -1,32 +1,5 @@
-import volvo from "../../assets/clients/volvo.png";
-import iveco from "../../assets/clients/iveco.png";
-import man from "../../assets/clients/man.png";
-import scania from "../../assets/clients/scania.png";
-import daf from "../../assets/clients/daf.png";
+import { clients } from "../../data/data";
 import Client from "./client";
-
-const clients = [
-  {
-    img: volvo,
-    text: "Volvo",
-  },
-  {
-    img: iveco,
-    text: "Iveco",
-  },
-  {
-    img: man,
-    text: "MAN",
-  },
-  {
-    img: scania,
-    text: "Scania",
-  },
-  {
-    img: daf,
-    text: "Daf",
-  },
-];
 
 export default function Clients() {
   return (

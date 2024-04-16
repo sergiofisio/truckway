@@ -1,33 +1,7 @@
 import logo from "../../assets/logo-truckWHITE.svg";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-scroll";
-
-const nav = [
-  {
-    name: "Home",
-    link: "/",
-  },
-  {
-    name: "História",
-    link: "history",
-  },
-  {
-    name: "Nossa Frota",
-    link: "truck",
-  },
-  {
-    name: "Clientes",
-    link: "clients",
-  },
-  {
-    name: "Responsabiliade ambiental",
-    link: "environement",
-  },
-  {
-    name: "Contato",
-    link: "contact",
-  },
-];
+import { nav } from "../../data/data";
 
 export default function Header() {
   const navigate = useNavigate();
