@@ -13,6 +13,15 @@ export default {
       colors: {
         red: "#FF0700",
       },
+      animation: {
+        "truck-slide": "truck-slide 5s linear infinite",
+      },
+      keyframes: {
+        "truck-slide": {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(300%)" },
+        },
+      },
       typography: () => ({
         DEFAULT: {
           css: {
