@@ -1,30 +1,43 @@
-# React + TypeScript + Vite
+# SL DIGITAL e TRUCKWAY
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Projeto desenvolvido por Sergio Augusto Moreira Bastos Júnior e Luiz Alberto de Carvalho Holanda Junior
 
-Currently, two official plugins are available:
+## SL DIGITAL
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Descrição
 
-## Expanding the ESLint configuration
+Pagina desenvolvida para projeto da matéria de Design Digital do curso de Desenvolvimento de Sistema da ETEC.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Empresa fictícia onde os Sócios fundadores são os Alunos Sergio Augusto Moreira Bastos Júnior e Luiz Alberto de Carvalho Holanda Junior.
 
-- Configure the top-level `parserOptions` property like this:
+#### TECNOLOGIAS
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- React
+- typescript
+- tailwind
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## TRUCKWAY
+
+### Descrição
+
+Pagina desenvolvida para projeto da matéria de Design Digital do curso de Desenvolvimento de Sistema da ETEC
+
+Empresa fictícia criada pelo Professor Douglas dos Santos onde o fundador da empresa foi o BJ MACKEY e comprada posteriormente pelo DOUGLAS TIBERUIS KIRK.
+
+#### TECNOLOGIAS
+
+- React
+- typescript
+- tailwind
+
+## VERSIONAMENTO e DEPLOY
+
+Todo o projeto foi versionado e desenvolvido através do GITHUB e disponibilizado online pelo VERCEL
+
+## LINKs
+
+Site LS Digital - https://lsdigital.vercel.app/
+<br>GITHUB LS Digital - https://github.com/sergiofisio/LSDIGITAL
+
+Site TRUCKWAY - https://truckway.vercel.app/
+<br>GITHUB TRUCKWAY - https://github.com/sergiofisio/truckway
