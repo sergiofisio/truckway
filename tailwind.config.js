@@ -3,6 +3,15 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      screens: {
+        md: {
+          min: "1100px",
+          max: "1440px",
+        },
+        sm: {
+          max: "1100px",
+        },
+      },
       fontFamily: {
         title: ["Quicksand", "sans-serif"],
         text: ["Nunito", "sans-serif"],

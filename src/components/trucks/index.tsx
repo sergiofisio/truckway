@@ -43,11 +43,11 @@ export default function Trucks({
   );
 
   return (
-    <div id="truck" className="flex flex-col gap-8">
-      <h2 className="font-title text-6xl text-red text-center font-bold">
+    <div id="truck" className="flex flex-col gap-8 ">
+      <h2 className="font-title text-6xl text-red text-center font-bold md:text-3xl sm:text-xl">
         Conheça nossa Frota
       </h2>
-      <div className="font-text text-2xl flex flex-col justify-center text-justify prose !max-w-full px-4">
+      <div className="font-text text-2xl flex flex-col justify-center text-justify prose !max-w-full px-4 md:text-xl sm:text-base">
         <p className="m-0">
           Nossa frota é a espinha dorsal da Truckway. Com veículos modernos e
           bem-mantidos, estamos prontos para enfrentar qualquer desafio

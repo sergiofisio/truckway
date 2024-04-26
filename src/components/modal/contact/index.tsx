@@ -14,7 +14,7 @@ export default function Contact({
 
   return (
     <div className="fixed top-0 right-0 z-10 flex items-center justify-center w-full h-full bg-opacity-50 bg-red">
-      <div className="flex flex-col w-3/5 max-h-80% h-fit p-5 bg-white rounded-3xl relative drop-shadow-[0_0_20px_#fff] gap-4">
+      <div className="flex flex-col items-center justify-center w-3/5 max-h-80% h-fit p-5 bg-white rounded-3xl relative drop-shadow-[0_0_20px_#fff] gap-4 md:min-h-[50%] md:w-full sm:w-full sm:min-h-[50%] ">
         <button
           className="rounded-[100%] border-red border-2 absolute top-4 right-4 text-red hover:bg-red hover:text-white transition-all duration-500 ease-in-out"
           onClick={() => showModal(false)}

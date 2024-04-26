@@ -13,7 +13,7 @@ export default function Button({
 }) {
   return (
     <button
-      className={`${className} flex items-center justify-center w-full rounded-3xl`}
+      className={`${className} flex items-center justify-center rounded-3xl`}
       onClick={onClick}
       type={type}
       disabled={disabled}

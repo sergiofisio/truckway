@@ -7,9 +7,9 @@ export default function Presentation({
   showModal: (modalName: string | boolean) => void;
 }) {
   return (
-    <div id="history" className="bg-red flex flex-col items-center p-10 ">
-      <div className="flex items-center justify-center text-white">
-        <h2 className="font-text text-3xl text-center">
+    <div id="history" className="bg-red flex flex-col items-center p-4">
+      <div className="flex items-center justify-center text-3xl text-white md:text-xl sm:text-base">
+        <h2 className="font-text text-center">
           Bem-vindo à Truckway! Somos uma empresa de transporte e logística
           comprometida com a excelência e a sustentabilidade. Explore nossos
           serviços, conheça nossa história e descubra como podemos atender às

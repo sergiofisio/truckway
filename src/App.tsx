@@ -71,8 +71,8 @@ export default function App() {
     <main className="relative">
       <Return showReturn={showReturn} setShowReturn={setShowReturn} />
       <Header />
-      <div className="flex flex-col gap-8 items-center">
-        <motion.section>
+      <div className="flex flex-col gap-8 justify-center">
+        <motion.section className="w-full">
           <Presentation showModal={setActiveModal} />
         </motion.section>
         {Object.entries(sections).map(([key, { ref, controls, Component }]) => (

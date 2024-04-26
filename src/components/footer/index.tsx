@@ -16,7 +16,7 @@ export default function Footer({
         <img className="w-52" src={logo} alt="Logo truckway" />
       </div>
       <div className="flex flex-col items-center justify-center w-full gap-4">
-        <h2 className="font-text text-3xl font-bold text-white">
+        <h2 className="font-text text-3xl font-bold text-white md:text-xl sm:text-base">
           Nos siga nas redes sociais
         </h2>
         <div className="flex items-center justify-center w-full gap-4">

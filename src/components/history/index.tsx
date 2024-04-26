@@ -7,7 +7,7 @@ export default function History({
 }) {
   return (
     <div className="fixed top-0 right-0 z-10 flex items-center justify-center w-full h-full bg-opacity-50 bg-red">
-      <div className="flex flex-col w-4/5 max-h-80% h-[80%] p-5 border-4 border-solid border-black bg-white rounded-3xl relative">
+      <div className="flex flex-col w-4/5 max-h-80% h-[80%] p-5 border-4 border-solid border-black bg-white rounded-3xl relative md:text-xl">
         <button
           className="rounded-[100%] border-black border-2 absolute top-4 right-4"
           onClick={() => showModal("")}

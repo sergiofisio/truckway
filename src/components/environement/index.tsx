@@ -9,7 +9,7 @@ export default function Environement() {
       id="environement"
       className="text-red flex flex-col items-center gap-20"
     >
-      <h2 className="font-title text-6xl font-bold">
+      <h2 className="font-title text-6xl font-bold md:text-4xl sm:text-2xl">
         Responsabilidade Ambiental
       </h2>
       <div className="font-text text-2xl flex justify-center text-center prose !max-w-full px-4">
@@ -21,7 +21,7 @@ export default function Environement() {
             alt=""
           />
         </div>
-        <div className="flex flex-col justify-center gap-4">
+        <div className="flex flex-col justify-center gap-4 md:text-xl sm:text-base">
           <p className="m-0">
             Acreditamos que o transporte pode ser ecologicamente responsável.
             Por isso, investimos em tecnologias limpas e rotas otimizadas.
