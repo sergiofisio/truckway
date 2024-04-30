@@ -67,7 +67,7 @@ export default function Compliments({
       <form
         onSubmit={handleSubmit}
         action="submit"
-        className="flex flex-col gap-4"
+        className="flex flex-col gap-4 w-full"
       >
         {inputFields.map(({ label, type, field }) => (
           <Input

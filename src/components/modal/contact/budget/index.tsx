@@ -33,35 +33,6 @@ export default function Budget({ setSubmit }: { setSubmit: any }) {
     }),
     []
   );
-
-  const inputFields = useMemo(
-    () => [
-      { label: "Nome Completo", type: "text", field: "name" },
-      { label: "Cargo", type: "text", field: "role" },
-      { label: "Nome da empresa", type: "text", field: "company" },
-      {
-        label: "CNPJ",
-        type: "text",
-        mask: "99.999.999/9999-99",
-        field: "cnpj",
-      },
-      { label: "Tipo de carga", type: "text", field: "typeProduct" },
-      { label: "Email para contato", type: "text", field: "email" },
-      {
-        label: "Telefone Fixo",
-        type: "text",
-        mask: "(99) 99999-9999",
-        field: "phone",
-      },
-      {
-        label: "Telefone Celular",
-        type: "text",
-        mask: "(99) 99999-9999",
-        field: "cellphone",
-      },
-    ],
-    []
-  );
   const [form, setForm] = useState(initialFormState);
   const [error, setError] = useState(initialErrorState);
   const handleSubmit = useCallback(
@@ -100,22 +71,91 @@ export default function Budget({ setSubmit }: { setSubmit: any }) {
       <form
         onSubmit={handleSubmit}
         action="submit"
-        className="flex flex-col gap-4"
+        className="flex flex-col items-center justify-center gap-4 w-full"
       >
-        {inputFields.map(({ label, type, mask, field }) => (
+        <div className="flex justify-between gap-4 w-full">
           <Input
-            key={field}
-            label={label}
-            type={type}
-            mask={mask}
-            className=""
-            onChange={(e) => setForm({ ...form, [field]: e.target.value })}
-            onFocus={() => setError({ ...error, [field]: false })}
-            value={form[field as keyof typeof form]}
-            error={error[field as keyof typeof form]}
+            label="Nome Completo"
+            type="text"
+            className="w-full"
+            onChange={(e) => setForm({ ...form, name: e.target.value })}
+            onFocus={() => setError({ ...error, name: false })}
+            value={form.name}
+            error={error.name}
           />
-        ))}
-        <div className="flex items-center justify-center">
+          <Input
+            label="Cargo"
+            type="text"
+            className=""
+            onChange={(e) => setForm({ ...form, role: e.target.value })}
+            onFocus={() => setError({ ...error, role: false })}
+            value={form.role}
+            error={error.role}
+          />
+        </div>
+        <div className="flex justify-between gap-4 w-full">
+          <Input
+            label="Nome da empresa"
+            type="text"
+            className="w-full"
+            onChange={(e) => setForm({ ...form, company: e.target.value })}
+            onFocus={() => setError({ ...error, company: false })}
+            value={form.company}
+            error={error.company}
+          />
+          <Input
+            label="CNPJ"
+            type="text"
+            mask="99.999.999/9999-99"
+            className="w-1/2"
+            onChange={(e) => setForm({ ...form, cnpj: e.target.value })}
+            onFocus={() => setError({ ...error, cnpj: false })}
+            value={form.cnpj}
+            error={error.cnpj}
+          />
+        </div>
+        <Input
+          label="Tipo de carga"
+          type="text"
+          className=""
+          onChange={(e) => setForm({ ...form, typeProduct: e.target.value })}
+          onFocus={() => setError({ ...error, typeProduct: false })}
+          value={form.typeProduct}
+          error={error.typeProduct}
+        />
+        <Input
+          label="Email para contato"
+          type="email"
+          className="w-1/2"
+          placeholder="contato@exemplo.com.br"
+          onChange={(e) => setForm({ ...form, email: e.target.value })}
+          onFocus={() => setError({ ...error, email: false })}
+          value={form.email}
+          error={error.email}
+        />
+        <div className="flex justify-between gap-4">
+          <Input
+            label="Telefone Fixo"
+            type="text"
+            mask="(99) 99999-9999"
+            className=""
+            onChange={(e) => setForm({ ...form, phone: e.target.value })}
+            onFocus={() => setError({ ...error, phone: false })}
+            value={form.phone}
+            error={error.phone}
+          />
+          <Input
+            label="Telefone Celular"
+            type="text"
+            mask="(99) 99999-9999"
+            className=""
+            onChange={(e) => setForm({ ...form, cellphone: e.target.value })}
+            onFocus={() => setError({ ...error, cellphone: false })}
+            value={form.cellphone}
+            error={error.cellphone}
+          />
+        </div>
+        <div className="flex items-center justify-center w-full">
           <label className="w-1/6 text-xl" htmlFor="preference">
             Preferencia de contato
           </label>
@@ -138,7 +178,7 @@ export default function Budget({ setSubmit }: { setSubmit: any }) {
             <option value="Whatsapp">Whatsapp</option>
           </select>
         </div>
-        <div className="flex items-center justify-evenly">
+        <div className="flex items-center justify-evenly w-full">
           <Button
             text="Enviar"
             type="submit"

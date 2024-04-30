@@ -5,6 +5,7 @@ export default function Input({
   type,
   mask,
   className,
+  placeholder,
   onChange,
   onFocus,
   value,
@@ -14,6 +15,7 @@ export default function Input({
   type: string;
   mask?: string;
   className: string;
+  placeholder?: string;
   onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
@@ -24,13 +26,18 @@ export default function Input({
   error?: boolean;
 }) {
   return (
-    <div className="flex items-center justify-center">
-      <label className="w-1/6 text-xl leading-none" htmlFor={label}>
+    <div
+      className={`flex flex-col items-center justify-center gap-2 ${className}`}
+    >
+      <label
+        className="w-full text-center text-xl leading-none"
+        htmlFor={label}
+      >
         {label}
       </label>
       {type !== "textarea" ? (
         <InputMask
-          className={`px-4 border-2 border-solid w-1/2 h-10 rounded-3xl ${className} ${
+          className={`px-4 border-2 border-solid w-full h-10 rounded-3xl $ ${
             error ? "border-red" : "border-black"
           }`}
           type={type}
@@ -38,10 +45,11 @@ export default function Input({
           onChange={onChange}
           onFocus={onFocus}
           value={value}
+          placeholder={mask || placeholder || label}
         />
       ) : (
         <textarea
-          className={`px-4 border-2 border-solid w-1/2 rounded-3xl resize-none ${className} ${
+          className={`px-4 border-2 border-solid w-1/2 rounded-3xl resize-none  ${className} ${
             error ? "border-red" : "border-black"
           }`}
           onChange={onChange}
