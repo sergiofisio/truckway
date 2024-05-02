@@ -6,15 +6,27 @@ import Compliments from "./compliments";
 
 export default function Contact({
   showModal,
+  windowHeight,
 }: {
   showModal: (text: string | boolean) => void;
+  windowHeight: number;
 }) {
   const [formType, setFormType] = useState("");
   const [submit, setSubmit] = useState(false);
 
+  const fontSize = windowHeight < 800 ? "text-4xl" : "text-6xl";
+
   return (
-    <div className="fixed top-0 right-0 z-10 flex items-center justify-center w-full h-full bg-opacity-50 bg-red">
-      <div className="flex flex-col items-center justify-center w-3/5 max-h-80% h-fit p-5 bg-white rounded-3xl relative drop-shadow-[0_0_20px_#fff] gap-4 md:min-h-[50%] md:w-full sm:w-full sm:min-h-[50%] ">
+    <div
+      className={`fixed top-0 right-0 flex w-full h-full bg-opacity-50 bg-red z-50 ${
+        windowHeight < 900
+          ? "overflow-y-scroll justify-center"
+          : "justify-center items-center"
+      } `}
+    >
+      <div
+        className={`flex flex-col w-3/5 p-5 bg-white rounded-3xl relative drop-shadow-[0_0_20px_#fff] gap-4 h-fit md:min-h-[50%] md:w-full sm:w-full sm:min-h-[50%]`}
+      >
         <button
           className="rounded-[100%] border-red border-2 absolute top-4 right-4 text-red hover:bg-red hover:text-white transition-all duration-500 ease-in-out"
           onClick={() => showModal(false)}
@@ -63,14 +75,20 @@ export default function Contact({
             </h2>
           </div>
         ) : formType === "budget" ? (
-          <Budget setSubmit={setSubmit} />
+          <Budget setSubmit={setSubmit} windowHeight={windowHeight} />
         ) : formType === "compliments" || formType === "complaints" ? (
-          <Compliments setSubmit={setSubmit} formType={formType} />
+          <Compliments
+            setSubmit={setSubmit}
+            formType={formType}
+            windowHeight={windowHeight}
+          />
         ) : (
           <>
             <div className="flex items-center justify-center">
               <img className="w-1/3" src={logoRed} alt="" />
-              <h2 className="text-red font-title text-6xl font-bold text-center">
+              <h2
+                className={`text-red font-title ${fontSize} font-bold text-center`}
+              >
                 Escolha o tipo de contato que você deseja
               </h2>
             </div>

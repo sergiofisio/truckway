@@ -14,6 +14,7 @@ import Contact from "./components/modal/contact";
 export default function App() {
   const [activeModal, setActiveModal] = useState<string | boolean>(false);
   const [showReturn, setShowReturn] = useState(false);
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 
   const sections = {
     Trucks: { ref: useRef(null), controls: useAnimation(), Component: Trucks },
@@ -52,15 +53,42 @@ export default function App() {
     });
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowHeight(window.innerHeight);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (activeModal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [activeModal]);
+
   const renderModal = () => {
     if (typeof activeModal === "string") {
       switch (activeModal) {
         case "history":
-          return <History showModal={setActiveModal} />;
+          return (
+            <History showModal={setActiveModal} windowHeight={windowHeight} />
+          );
         case "contact":
-          return <Contact showModal={setActiveModal} />;
+          return (
+            <Contact showModal={setActiveModal} windowHeight={windowHeight} />
+          );
         default:
-          return <TruckModal modal={activeModal} showModal={setActiveModal} />;
+          return (
+            <TruckModal
+              modal={activeModal}
+              showModal={setActiveModal}
+              windowHeight={windowHeight}
+            />
+          );
       }
     }
 

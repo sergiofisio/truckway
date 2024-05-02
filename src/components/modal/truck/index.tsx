@@ -3,9 +3,11 @@ import { truckInfo } from "../../../data/data";
 export default function TruckModal({
   modal,
   showModal,
+  windowHeight,
 }: {
   modal: string;
   showModal: (text: string | boolean) => void;
+  windowHeight: number;
 }) {
   const truck = truckInfo.find((truck) =>
     truck.type.toLowerCase().includes(modal)
@@ -36,7 +38,7 @@ export default function TruckModal({
           </button>
           <h2 className="text-center text-3xl font-black">{truck.type}</h2>
           <img
-            className="h-96 w-96"
+            className={` ${windowHeight < 900 ? "h-40 w-40" : "h-96 w-96"} `}
             src={truck.img}
             alt={`img ${truck.type}`}
           />

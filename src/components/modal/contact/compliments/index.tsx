@@ -5,9 +5,11 @@ import Button from "../../../button";
 export default function Compliments({
   setSubmit,
   formType,
+  windowHeight,
 }: {
   setSubmit: any;
   formType: string;
+  windowHeight: number;
 }) {
   const initialFormState = useMemo(
     () => ({

@@ -3,7 +3,13 @@ import Input from "../../../input";
 import Button from "../../../button";
 import { toastfy } from "../../../../hooks/toast";
 
-export default function Budget({ setSubmit }: { setSubmit: any }) {
+export default function Budget({
+  setSubmit,
+  windowHeight,
+}: {
+  setSubmit: any;
+  windowHeight: number;
+}) {
   const initialFormState = useMemo(
     () => ({
       name: "",
@@ -57,12 +63,15 @@ export default function Budget({ setSubmit }: { setSubmit: any }) {
     [form]
   );
 
+  const titleSize = windowHeight < 800 ? "text-4xl" : "text-6xl";
+  const pSize = windowHeight < 800 ? "text-lg" : "text-2xl";
+
   return (
     <>
-      <h2 className="font-title text-6xl font-bold text-center">
+      <h2 className={`font-title ${titleSize} font-bold text-center`}>
         Pedido de orçamento
       </h2>
-      <p className="text-center text-2xl font-text font-bold">
+      <p className={`text-center text-2xl font-text font-bold ${pSize}`}>
         Favor preencher os dados abaixo, com os dados da sua empresa e produtos
         que entraremos em contato o mais rapido o possível para realizar o
         orcamento para fecharmos esta parceria de sucesso.
