@@ -8,7 +8,7 @@ export default function History({
 }) {
   return (
     <div className="fixed top-0 right-0 z-10 flex items-center justify-center w-full h-full bg-opacity-50 bg-red">
-      <div className="flex flex-col items-center justify-center w-4/5 max-h-80% h-[80%] p-5 bg-white rounded-3xl relative drop-shadow-[0_0_20px_#fff] sm:text-base md:w-full sm:w-full">
+      <div className="flex flex-col items-center justify-center w-4/5 max-h-80% h-[80%] p-5 bg-white rounded-3xl relative drop-shadow-[0_0_20px_#fff] sm:text-base md:w-full sm:w-full sm:h-full sm:px-1 sm:pt-10 sm:pb-1">
         <button
           className="rounded-[100%] border-red border-2 absolute top-4 right-4 text-red hover:bg-red hover:text-white transition-all duration-500 ease-in-out"
           onClick={() => showModal(false)}
@@ -31,8 +31,8 @@ export default function History({
         <h2 className="font-title text-center text-3xl font-black">
           História da Truckway: Uma Jornada de Estradas e Inovação
         </h2>
-        <div className="flex flex-col gap-2 font-text text-xl max-h-[90%] overflow-y-scroll prose !max-w-full px-4">
-          <div className="flex justify-center items-center m-0">
+        <div className="flex flex-col gap-2 font-text text-xl max-h-[90%] overflow-y-scroll prose !max-w-full px-4 sm:px-1">
+          <div className="flex justify-center items-center m-0 sm:flex-col">
             <img
               className="m-0 rounded-3xl drop-shadow-2xl"
               src={bj}
@@ -101,7 +101,7 @@ export default function History({
               meio ambiente.
             </p>
           </div>
-          <div className="flex items-center text-justify">
+          <div className="flex items-center text-justify sm:flex-col">
             <img
               className="m-0 rounded-3xl drop-shadow-2xl"
               src={kirk}

@@ -62,7 +62,7 @@ export const clients = [
 export const nav = [
   {
     name: "Home",
-    link: "/",
+    link: "home",
   },
   {
     name: "História",

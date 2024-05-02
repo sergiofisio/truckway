@@ -68,7 +68,7 @@ export default function App() {
   };
 
   return (
-    <main className="relative">
+    <main className="relative max-w-[100vw]">
       <Return showReturn={showReturn} setShowReturn={setShowReturn} />
       <Header />
       <div className="flex flex-col gap-8 justify-center">
