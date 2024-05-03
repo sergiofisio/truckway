@@ -77,11 +77,7 @@ export default function Contact({
         ) : formType === "budget" ? (
           <Budget setSubmit={setSubmit} windowHeight={windowHeight} />
         ) : formType === "compliments" || formType === "complaints" ? (
-          <Compliments
-            setSubmit={setSubmit}
-            formType={formType}
-            windowHeight={windowHeight}
-          />
+          <Compliments setSubmit={setSubmit} formType={formType} />
         ) : (
           <>
             <div className="flex items-center justify-center">
