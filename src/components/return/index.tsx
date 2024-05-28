@@ -1,13 +1,15 @@
 export default function Return({
   showReturn,
   setShowReturn,
+  mainRef,
 }: {
   showReturn: boolean;
   setShowReturn: React.Dispatch<React.SetStateAction<boolean>>;
+  mainRef: React.RefObject<HTMLElement>;
 }) {
   const scrollToTop = () => {
     setShowReturn(false);
-    window.scrollTo({
+    mainRef.current?.scrollTo({
       top: 0,
       behavior: "smooth",
     });

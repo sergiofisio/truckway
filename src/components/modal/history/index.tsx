@@ -9,10 +9,10 @@ export default function History({
   windowHeight: number;
 }) {
   return (
-    <div className="fixed top-0 right-0 z-10 flex items-center justify-center w-full h-full bg-opacity-50 bg-red">
+    <div className="fixed top-0 right-0 z-50 flex items-center justify-center w-full h-full bg-opacity-50 bg-red">
       <div
-        className={`flex flex-col items-center justify-center w-4/5 max-h-[80%] p-5 bg-white rounded-3xl relative drop-shadow-[0_0_20px_#fff] sm:text-base md:w-full sm:w-full sm:h-full sm:px-1 sm:pt-10 sm:pb-1 ${
-          windowHeight < 900 ? "h-fit overflow-y-scroll" : "max-h-[80%]"
+        className={`flex flex-col items-center justify-center w-4/5 max-h-[95%] p-5 bg-white rounded-3xl relative drop-shadow-[0_0_20px_#fff] sm:text-base md:w-full sm:w-full sm:h-full sm:px-1 sm:pt-10 sm:pb-1 ${
+          windowHeight < 900 ? "h-fit" : "max-h-[90%]"
         } `}
       >
         <button
@@ -37,7 +37,7 @@ export default function History({
         <h2 className="font-title text-center text-3xl font-black">
           História da Truckway: Uma Jornada de Estradas e Inovação
         </h2>
-        <div className="flex flex-col gap-2 font-text text-xl max-h-[90%] overflow-y-scroll prose !max-w-full px-4 sm:px-1">
+        <div className="flex flex-col gap-2 font-text text-xl max-h-[90%] overflow-y-auto scrollbar scrollbar-thumb-red scrollbar-track-white prose !max-w-full px-4 sm:px-1">
           <div className="flex justify-center items-center m-0 sm:flex-col">
             <img
               className="m-0 rounded-3xl drop-shadow-2xl"

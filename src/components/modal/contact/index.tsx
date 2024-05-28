@@ -20,12 +20,14 @@ export default function Contact({
     <div
       className={`fixed top-0 right-0 flex w-full h-full bg-opacity-50 bg-red z-50 ${
         windowHeight < 900
-          ? "overflow-y-scroll justify-center"
+          ? "overflow-y-auto scrollbar scrollbar-thumb-red scrollbar-track-white justify-center"
           : "justify-center items-center"
       } `}
     >
       <div
-        className={`flex flex-col w-3/5 p-5 bg-white rounded-3xl relative drop-shadow-[0_0_20px_#fff] gap-4 h-fit md:min-h-[50%] md:w-full sm:w-full sm:min-h-[50%]`}
+        className={`flex flex-col items-center justify-center w-4/5 max-h-[95%] p-5 bg-white rounded-3xl relative drop-shadow-[0_0_20px_#fff] sm:text-base md:w-full sm:w-full sm:h-full sm:px-1 sm:pt-10 sm:pb-1 ${
+          windowHeight < 900 ? "h-fit" : "max-h-[90%]"
+        } `}
       >
         <button
           className="rounded-[100%] border-red border-2 absolute top-4 right-4 text-red hover:bg-red hover:text-white transition-all duration-500 ease-in-out"

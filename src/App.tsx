@@ -15,6 +15,7 @@ export default function App() {
   const [activeModal, setActiveModal] = useState<string | boolean>(false);
   const [showReturn, setShowReturn] = useState(false);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+  const mainRef = useRef<HTMLElement | null>(null);
 
   const sections = {
     Trucks: { ref: useRef(null), controls: useAnimation(), Component: Trucks },
@@ -31,10 +32,20 @@ export default function App() {
   };
 
   useEffect(() => {
-    const handleScroll = () => setShowReturn(window.scrollY > 30);
+    const handleScroll = () => {
+      if (mainRef.current) {
+        setShowReturn(mainRef.current.scrollTop > 30);
+      }
+    };
 
-    document.addEventListener("scroll", handleScroll);
-    return () => document.removeEventListener("scroll", handleScroll);
+    if (mainRef.current) {
+      mainRef.current.addEventListener("scroll", handleScroll);
+    }
+    return () => {
+      if (mainRef.current) {
+        mainRef.current.removeEventListener("scroll", handleScroll);
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -96,8 +107,19 @@ export default function App() {
   };
 
   return (
-    <main className="relative max-w-[100vw]">
-      <Return showReturn={showReturn} setShowReturn={setShowReturn} />
+    <main
+      ref={mainRef}
+      className={`relative w-screen h-screen ${
+        activeModal
+          ? "overflow-y-scroll scrollbar scrollbar-thumb-red scrollbar-track-red"
+          : "overflow-y-scroll scrollbar scrollbar-thumb-red scrollbar-track-white"
+      } `}
+    >
+      <Return
+        showReturn={showReturn}
+        setShowReturn={setShowReturn}
+        mainRef={mainRef}
+      />
       <Header />
       <div className="flex flex-col gap-8 justify-center">
         <motion.section className="w-full">

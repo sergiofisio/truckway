@@ -13,7 +13,7 @@ export default function Header() {
   return (
     <header
       id="home"
-      className="flex items-end justify-around h-full w-full p-2 bg-white relative"
+      className="flex items-end justify-around h-80 w-full p-2 bg-white relative"
     >
       <img
         className="w-2/12 cursor-pointer"

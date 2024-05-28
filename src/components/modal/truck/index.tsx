@@ -14,9 +14,9 @@ export default function TruckModal({
   );
 
   return (
-    <div className="fixed top-0 right-0 z-10 flex items-center justify-center w-full h-full bg-opacity-50 bg-red">
+    <div className="fixed top-0 right-0 z-50 flex items-center justify-center w-full h-full bg-opacity-50 bg-red">
       {truck && (
-        <div className="flex flex-col items-center w-4/5 max-h-80% h-[80%] p-5 bg-white rounded-3xl relative drop-shadow-[0_0_20px_#fff]">
+        <div className="flex flex-col items-center w-4/5 max-h-[95%] h-[100%] p-5 bg-white rounded-3xl relative drop-shadow-[0_0_20px_#fff]">
           <button
             className="rounded-[100%] border-red border-2 absolute top-4 right-4 text-red hover:bg-red hover:text-white transition-all duration-500 ease-in-out"
             onClick={() => showModal(false)}
@@ -42,7 +42,7 @@ export default function TruckModal({
             src={truck.img}
             alt={`img ${truck.type}`}
           />
-          <div className="flex flex-col gap-2 max-h-[90%] overflow-y-auto prose !max-w-full px-4">
+          <div className="flex flex-col gap-2 max-h-[90%] overflow-y-auto scrollbar scrollbar-thumb-red scrollbar-track-white prose !max-w-full px-4">
             {truck.info.map((item, key) => (
               <p key={key} className="font-text text-justify text-xl m-0">
                 {item.paragrafo}
